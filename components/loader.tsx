@@ -1,7 +1,9 @@
 import Image from "next/image";
 import React from "react";
 
-export default function Loader() {
+const Loader: React.FC= ({
+  
+}) => {
   return (
     // <div className="flex justify-center items-center w-screen h-screen ">
     <div>
@@ -9,3 +11,4 @@ export default function Loader() {
     </div>
   );
 }
+export default  Loader;
