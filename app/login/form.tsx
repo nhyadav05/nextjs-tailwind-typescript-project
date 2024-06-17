@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert } from "@/components/ui/alert";
+import { Alert } from "@/components/alert";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -10,16 +10,18 @@ export const LoginForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(false)
     router.push("/home");
   };
 
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-col items-center space-y-6 max-w-md px-20 py-16 mx-auto bg-gray-100 border border-gray-300 rounded-lg shadow-lg"
+      className="flex flex-col items-center space-y-6 max-w-md px-20 py-16 mx-auto bg-gray-100 border  rounded-lg shadow-lg "
     >
       <h2 className="text-2xl font-semibold text-gray-800">Login</h2>
       <div className="w-full">
@@ -57,9 +59,9 @@ export const LoginForm: React.FC = () => {
       {error && <Alert>{error}</Alert>}
       <button
         className="inline-flex items-center justify-center w-full h-11 px-8 text-sm font-medium text-white bg-indigo-900 rounded-md hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
-        type="submit"
+        type="submit" disabled={isLoading}
       >
-        Login
+       {isLoading ? 'Loading...' : 'Login'}
       </button>
       <p className="text-center text-black  ">
         Need to create an account?{" "}
